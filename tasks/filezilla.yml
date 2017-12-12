@@ -1,0 +1,11 @@
+---
+
+- name: Link filezilla configuration
+  file:
+    src: "{{ files_path }}Filezilla/{{ item }}"
+    dest: "{{ user_path }}.config/filezilla/{{ item }}"
+    state: link
+    force: yes
+  with_items: 
+      - recentservers.xml
+      - sitemanager.xml

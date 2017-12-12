@@ -1,0 +1,8 @@
+---
+
+- name: Link git config file
+  file:
+    src: "{{ files_path }}git/gitconfig"
+    dest: "{{ user_path }}.gitconfig"
+    state: link
+    force: yes

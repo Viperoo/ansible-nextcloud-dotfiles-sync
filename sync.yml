@@ -1,0 +1,32 @@
+---
+- name: Set up links 
+  hosts: localhost
+  
+  vars:
+      cloud_path: "/home/user/Nextcloud/"
+      files_path: "/home/user/Nextcloud/Dotfiles/files/"
+      user_path: "/home/user/"
+      sync_directories:
+        - Documents
+        - Photos
+  
+  tasks:
+  - name: Links ssh config
+    include: tasks/ssh.yml
+
+  # This tasks link
+  # /home/user/Nextcloud/Documents -> /home/user/Documents
+  - name: Links cloud directories
+    include: tasks/cloud_folders.yml
+
+  - name: Links filezilla sitemanager
+    include: tasks/filezilla.yml
+
+  - name: Links filezilla sitemanager
+    include: tasks/git.yml
+
+  - name: Links gtk themes
+    include: tasks/gtk.yml
+
+  - name: Links KDE settings
+    include: tasks/kde.yml

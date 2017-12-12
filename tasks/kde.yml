@@ -1,0 +1,23 @@
+---
+
+- name: Link KDE folders
+  file:
+    src: "{{ files_path }}kde/{{ item }}"
+    dest: "{{ user_path }}.config/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+      - qtcurve
+      - kdeglobals
+      - ksplashrc
+      - Trolltech.conf
+      - user-dirs.dirs
+
+- name: Link KDE icon
+  file:
+    src: "{{ files_path }}kde/{{ item }}"
+    dest: "{{ user_path }}.{{ item }}"
+    state: link
+    force: yes
+  with_items:
+      - face

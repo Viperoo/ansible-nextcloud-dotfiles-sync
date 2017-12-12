@@ -1,0 +1,16 @@
+---
+
+- name: Check what folders is synchronized
+  stat:
+    path: "{{ cloud_path }}{{ item }}"
+  with_items: "{{ sync_directories }}"
+  register: directories
+  
+- name: Link folders when is synchronize in nextcloud client
+  file:
+    src: "{{ cloud_path }}{{ item.item }}"
+    dest: "{{ user_path }}{{ item.item }}"
+    state: link
+    force: yes
+  with_items: "{{ directories.results }}"
+  when: item.stat.exists

@@ -1,0 +1,13 @@
+---
+
+- name: Link configuration
+  file:
+    src: "{{ files_path }}ssh/config"
+    dest: "{{ user_path }}.ssh/config"
+    state: link
+
+- name: Link know hosts
+  file:
+    src: "{{ files_path }}ssh/known_hosts"
+    dest: "{{ user_path }}.ssh/known_hosts"
+    state: link
